@@ -3,77 +3,575 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kannada One - Knowledge Hub</title>
+    <title>Kannada One - Professional Recreation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border: #dee2e6;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            padding: 15px 20px;
+            background: var(--light);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            color: white;
+        }
+        
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .blog-description {
+            font-size: 1rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin-top: 5px;
+        }
+        
+        .header-controls {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box input {
+            padding: 8px 15px 8px 35px;
+            border: none;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            width: 250px;
+            transition: all 0.3s;
+        }
+        
+        .search-box input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            outline: none;
+            width: 300px;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* ===== NAVIGATION ===== */
+        nav {
+            background: var(--secondary);
+            padding: 10px 0;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+        }
+        
+        .nav-menu li a {
+            display: block;
+            padding: 8px 20px;
+            color: white;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .nav-menu li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .nav-menu li a.active {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        /* ===== MAIN CONTENT ===== */
+        main {
+            flex: 1;
+            padding: 30px 0;
+        }
+        
+        .main-layout {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 30px;
+        }
+        
+        /* Content Area */
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .knowledge-card .card-header {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .knowledge-card .card-body {
+            min-height: 120px;
+        }
+        
+        .knowledge-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--border);
+        }
+        
+        .knowledge-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .item-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        /* News Section */
+        .news-section {
+            margin-top: 30px;
+        }
+        
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .news-meta {
+            display: flex;
+            gap: 15px;
+            background: var(--light);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+        
+        .news-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .news-card .card-header {
+            background: var(--accent);
+            color: white;
+        }
+        
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .widget {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        .widget-header {
+            padding: 15px 20px;
+            background: var(--light);
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .widget-body {
+            padding: 20px;
+        }
+        
+        .widget-list {
+            list-style: none;
+        }
+        
+        .widget-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+        
+        .widget-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .widget-list a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+        }
+        
+        .widget-list a:hover {
+            color: var(--accent);
+        }
+        
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tag {
+            background: var(--light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 30px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                grid-row: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .logo {
+                justify-content: center;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .search-box input {
+                width: 100%;
+            }
+            
+            .search-box input:focus {
+                width: 100%;
+            }
+            
+            .knowledge-grid,
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <h1 class="blog-title">
-                    <i class="fas fa-brain"></i>
-                    Kannada One
-                </h1>
-                <p class="blog-description">Gain Knowledge with me...! Exploring transformative ideas and exigicational data</p>
-                
-                <nav>
-                    <ul class="nav-menu">
-                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#"><i class="fas fa-keyboard"></i> Keyboard</a></li>
-                        <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-                        <li><a href="#"><i class="fas fa-book"></i> Knowledge</a></li>
-                        <li><a href="#"><i class="fas fa-newspaper"></i> News</a></li>
-                    </ul>
-                </nav>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-brain logo-icon"></i>
+                <div>
+                    <div class="logo-text">Kannada One</div>
+                    <div class="blog-description">Gain Knowledge with me...! Exploring transformative ideas and exigicational data</div>
+                </div>
             </div>
-        </header>
-        
+            <div class="header-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Type to search...">
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fas fa-keyboard"></i> Keyboard</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#"><i class="fas fa-book"></i> Knowledge</a></li>
+                <li><a href="#"><i class="fas fa-newspaper"></i> News</a></li>
+                <li><a href="#"><i class="fas fa-wrench"></i> Tools</a></li>
+                <li><a href="#"><i class="fas fa-download"></i> Downloads</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="container">
         <div class="main-layout">
             <div class="content-area">
-                <section class="knowledge-section">
-                    <h2 class="section-title">
-                        <i class="fas fa-lightbulb"></i>
-                        Gain Knowledge with me...!
-                    </h2>
-                    
-                    <div class="knowledge-content">
-                        <div class="knowledge-card">
-                            <h3 class="card-title">Exibid Concepts</h3>
-                            <div class="card-content">
-                                <p><span class="highlight">ignored</span>, <span class="highlight">e-factored</span>, transforming, <span class="highlight">abrogant desired</span></p>
+                <!-- Knowledge Section -->
+                <section class="section">
+                    <h2 class="section-title"><i class="fas fa-lightbulb"></i> Gain Knowledge with me...!</h2>
+                    <div class="knowledge-grid">
+                        <div class="card knowledge-card">
+                            <div class="card-header">Exibid Concepts</div>
+                            <div class="card-body">
+                                <div class="knowledge-item">
+                                    <div class="item-icon"><i class="fas fa-check"></i></div>
+                                    <div>ignored</div>
+                                </div>
+                                <div class="knowledge-item">
+                                    <div class="item-icon"><i class="fas fa-check"></i></div>
+                                    <div>e-factored</div>
+                                </div>
+                                <div class="knowledge-item">
+                                    <div class="item-icon"><i class="fas fa-check"></i></div>
+                                    <div>transforming</div>
+                                </div>
+                                <div class="knowledge-item">
+                                    <div class="item-icon"><i class="fas fa-check"></i></div>
+                                    <div>abrogant desired</div>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="knowledge-card">
-                            <h3 class="card-title">Web Start</h3>
-                            <div class="card-content">
-                                <p><span class="highlight">exigicational</span> data/trivia, scfWidget implementations</p>
+                        <div class="card knowledge-card">
+                            <div class="card-header">Web Start</div>
+                            <div class="card-body">
+                                <div class="knowledge-item">
+                                    <div class="item-icon"><i class="fas fa-check"></i></div>
+                                    <div>exigicational data/trivia</div>
+                                </div>
+                                <div class="knowledge-item">
+                                    <div class="item-icon"><i class="fas fa-check"></i></div>
+                                    <div>scfWidget implementations</div>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="knowledge-card">
-                            <h3 class="card-title">Data Transformations</h3>
-                            <div class="card-content">
-                                <p>Advanced parsing of abnotus structures with <span class="highlight">exigicational</span> matrices</p>
+                        <div class="card knowledge-card">
+                            <div class="card-header">Data Transformations</div>
+                            <div class="card-body">
+                                <div class="knowledge-item">
+                                    <div class="item-icon"><i class="fas fa-check"></i></div>
+                                    <div>Advanced parsing of abnotus structures</div>
+                                </div>
+                                <div class="knowledge-item">
+                                    <div class="item-icon"><i class="fas fa-check"></i></div>
+                                    <div>Exigicational matrices</div>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="knowledge-card">
-                            <h3 class="card-title">Widget Integration</h3>
-                            <div class="card-content">
-                                <p>Building <span class="highlight">scfWidget</span> architectures for knowledge distillation</p>
+                        <div class="card knowledge-card">
+                            <div class="card-header">Widget Integration</div>
+                            <div class="card-body">
+                                <div class="knowledge-item">
+                                    <div class="item-icon"><i class="fas fa-check"></i></div>
+                                    <div>Building scfWidget architectures</div>
+                                </div>
+                                <div class="knowledge-item">
+                                    <div class="item-icon"><i class="fas fa-check"></i></div>
+                                    <div>Knowledge distillation techniques</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
                 
-                <section class="news-section">
+                <!-- News Section -->
+                <section class="section news-section">
                     <div class="news-header">
-                        <h2 class="news-title">
-                            <i class="fas fa-newspaper"></i>
-                            Hamed News
-                        </h2>
+                        <h2 class="section-title"><i class="fas fa-newspaper"></i> Hamed News</h2>
                         <div class="news-meta">
                             <span><i class="fas fa-search"></i> Search</span>
                             <span><i class="fas fa-money-bill-wave"></i> BHD</span>
@@ -83,92 +581,148 @@
                         </div>
                     </div>
                     
-                    <div class="news-content">
-                        <div class="news-card">
-                            <h3 class="news-card-title">Latest Developments</h3>
-                            <div class="news-card-content">
-                                <p>New advancements in knowledge representation systems are transforming how we process exigicational data.</p>
+                    <div class="news-grid">
+                        <div class="card news-card">
+                            <div class="card-header">Latest Developments</div>
+                            <div class="card-body">
+                                <p>New advancements in knowledge representation systems are transforming how we process exigicational data. The integration of scfWidget frameworks has enabled unprecedented data parsing capabilities.</p>
                             </div>
                         </div>
                         
-                        <div class="news-card">
-                            <h3 class="news-card-title">Technology Update</h3>
-                            <div class="news-card-content">
-                                <p>The scfWidget framework has been updated to support advanced disliteration techniques for better data parsing.</p>
+                        <div class="card news-card">
+                            <div class="card-header">Technology Update</div>
+                            <div class="card-body">
+                                <p>The scfWidget framework has been updated to support advanced disliteration techniques for better data parsing. This release includes significant performance improvements.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card news-card">
+                            <div class="card-header">Knowledge Expansion</div>
+                            <div class="card-body">
+                                <p>Our team has developed new methodologies for knowledge distillation that significantly improve data transformation efficiency. These techniques are now available to all users.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card news-card">
+                            <div class="card-header">Community Growth</div>
+                            <div class="card-body">
+                                <p>Kannada One community has reached over 10,000 active users. We're excited to announce new community features and collaboration tools coming next quarter.</p>
                             </div>
                         </div>
                     </div>
                 </section>
             </div>
             
-            <div class="widgets">
+            <!-- Sidebar -->
+            <aside class="sidebar">
                 <div class="widget">
-                    <h3 class="widget-title">
-                        <i class="fas fa-search"></i>
-                        Search
-                    </h3>
-                    <div class="search-box">
-                        <input type="text" placeholder="Type to search...">
-                        <button><i class="fas fa-search"></i></button>
+                    <div class="widget-header">Popular Content</div>
+                    <div class="widget-body">
+                        <ul class="widget-list">
+                            <li><a href="#"><i class="fas fa-arrow-circle-right"></i> Exibid Concepts Explained</a></li>
+                            <li><a href="#"><i class="fas fa-arrow-circle-right"></i> Data Transformation Guide</a></li>
+                            <li><a href="#"><i class="fas fa-arrow-circle-right"></i> Widget Integration Tutorial</a></li>
+                            <li><a href="#"><i class="fas fa-arrow-circle-right"></i> Web Start Framework</a></li>
+                            <li><a href="#"><i class="fas fa-arrow-circle-right"></i> Knowledge Distillation</a></li>
+                        </ul>
                     </div>
                 </div>
                 
                 <div class="widget">
-                    <h3 class="widget-title">
-                        <i class="fas fa-star"></i>
-                        Popular Content
-                    </h3>
-                    <ul class="widget-list">
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Exibid Concepts Explained</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Data Transformation Guide</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Widget Integration Tutorial</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Web Start Framework</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-right"></i> Knowledge Distillation</a></li>
-                    </ul>
+                    <div class="widget-header">Categories</div>
+                    <div class="widget-body">
+                        <div class="tag-list">
+                            <a href="#" class="tag">Exibid Concepts</a>
+                            <a href="#" class="tag">Web Start</a>
+                            <a href="#" class="tag">Data Parsing</a>
+                            <a href="#" class="tag">Widgets</a>
+                            <a href="#" class="tag">Knowledge</a>
+                            <a href="#" class="tag">Transformations</a>
+                            <a href="#" class="tag">Algorithms</a>
+                            <a href="#" class="tag">Frameworks</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="widget">
-                    <h3 class="widget-title">
-                        <i class="fas fa-tags"></i>
-                        Categories
-                    </h3>
-                    <ul class="widget-list">
-                        <li><a href="#"><i class="fas fa-tag"></i> Exibid Concepts</a></li>
-                        <li><a href="#"><i class="fas fa-tag"></i> Web Start</a></li>
-                        <li><a href="#"><i class="fas fa-tag"></i> Data Parsing</a></li>
-                        <li><a href="#"><i class="fas fa-tag"></i> Widgets</a></li>
-                        <li><a href="#"><i class="fas fa-tag"></i> Knowledge</a></li>
-                    </ul>
+                    <div class="widget-header">Recent Updates</div>
+                    <div class="widget-body">
+                        <ul class="widget-list">
+                            <li><a href="#"><i class="fas fa-sync-alt"></i> Data Matrix Updated</a></li>
+                            <li><a href="#"><i class="fas fa-sync-alt"></i> New Constraints Added</a></li>
+                            <li><a href="#"><i class="fas fa-sync-alt"></i> Parsing Algorithms</a></li>
+                            <li><a href="#"><i class="fas fa-sync-alt"></i> Knowledge Modules</a></li>
+                            <li><a href="#"><i class="fas fa-sync-alt"></i> Widget Framework</a></li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <div class="widget">
-                    <h3 class="widget-title">
-                        <i class="fas fa-history"></i>
-                        Recent Updates
-                    </h3>
-                    <ul class="widget-list">
-                        <li><a href="#"><i class="fas fa-sync-alt"></i> Data Matrix Updated</a></li>
-                        <li><a href="#"><i class="fas fa-sync-alt"></i> New Constraints Added</a></li>
-                        <li><a href="#"><i class="fas fa-sync-alt"></i> Parsing Algorithms</a></li>
+                    <div class="widget-header">Tools & Resources</div>
+                    <div class="widget-body">
+                        <ul class="widget-list">
+                            <li><a href="#"><i class="fas fa-download"></i> Data Parser v2.5</a></li>
+                            <li><a href="#"><i class="fas fa-download"></i> Knowledge Transformer</a></li>
+                            <li><a href="#"><i class="fas fa-download"></i> Widget Toolkit</a></li>
+                            <li><a href="#"><i class="fas fa-download"></i> Matrix Generator</a></li>
+                            <li><a href="#"><i class="fas fa-download"></i> Documentation Pack</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Kannada One</h3>
+                    <p>A platform dedicated to knowledge sharing, transformation, and innovation. We explore exigicational data and develop cutting-edge tools for information processing.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Knowledge Base</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> News & Updates</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Tools & Resources</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Community</a></li>
                     </ul>
                 </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Documentation</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Tutorials</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> API Reference</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Download Center</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Support Forum</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 Kannada One. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #e74c3c;"></i> for knowledge enthusiasts
             </div>
         </div>
-        
-        <footer>
-            <div class="footer-content">
-                <div class="footer-links">
-                    <a href="#"><i class="fas fa-home"></i> Home</a>
-                    <a href="#"><i class="fas fa-info-circle"></i> About</a>
-                    <a href="#"><i class="fas fa-envelope"></i> Contact</a>
-                    <a href="#"><i class="fas fa-shield-alt"></i> Privacy</a>
-                    <a href="#"><i class="fas fa-file-alt"></i> Terms</a>
-                </div>
-                <p class="copyright">© 2025 Kannada One - Knowledge Hub. All rights reserved. Powered by GitHub Pages.</p>
-            </div>
-        </footer>
-    </div>
+    </footer>
     
+    <!-- JavaScript -->
     <script>
         // Update date and time dynamically
         function updateDateTime() {
@@ -192,23 +746,34 @@
             document.getElementById('current-time').textContent = formattedTime;
         }
         
-        // Initial update
+        // Initialize and update every minute
         updateDateTime();
-        
-        // Update every minute
         setInterval(updateDateTime, 60000);
         
-        // Add animation to cards on hover
-        document.querySelectorAll('.knowledge-card, .news-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-5px)';
-                card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
+        // Add hover effects to cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
             });
             
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-                card.style.boxShadow = 'none';
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 3px 10px rgba(0, 0, 0, 0.08)';
             });
+        });
+        
+        // Search functionality
+        const searchInput = document.querySelector('.search-box input');
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const searchTerm = this.value.trim();
+                if (searchTerm) {
+                    alert(`Searching for: ${searchTerm}`);
+                    // In a real implementation, you would redirect to search results
+                    // window.location.href = `/search?q=${encodeURIComponent(searchTerm)}`;
+                }
+            }
         });
     </script>
 </body>

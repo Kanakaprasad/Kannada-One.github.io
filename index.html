@@ -3,137 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gain Knowledge With Me</title>
+    <title>Kannada One - Knowledge Hub</title>
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
+            --header-bg: #2E86C1;
+            --text-color: #333;
+            --link-color: #2874A6;
+            --sidebar-bg: #F2F3F4;
+            --post-bg: #FFFFFF;
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+            display: grid;
+            grid-template-columns: 70% 30%;
+            grid-gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #f9f9f9;
         }
         
-        .knowledge-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        header {
+            grid-column: 1 / -1;
+            background: var(--header-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
         
-        .knowledge-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 1rem;
+        .blog-title {
+            margin: 0;
+            font-size: 2.2em;
         }
         
-        h1 {
-            color: var(--primary);
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .knowledge-subheader {
-            color: var(--secondary);
+        .blog-description {
+            margin: 5px 0 0;
             font-style: italic;
         }
         
-        .knowledge-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+        main {
+            background: var(--post-bg);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        .knowledge-card {
-            background: var(--light);
-            padding: 1.5rem;
-            border-radius: 6px;
-            transition: transform 0.3s ease;
+        .post {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
         }
         
-        .knowledge-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-        }
-        
-        .card-title {
-            color: var(--accent);
+        .post-title {
+            color: var(--header-bg);
             margin-top: 0;
-            border-bottom: 1px dashed #ccc;
-            padding-bottom: 0.5rem;
         }
         
-        .card-content {
-            color: var(--dark);
+        .post-date {
+            color: #777;
+            font-size: 0.9em;
         }
         
-        .exibid-highlight {
-            background-color: #fffde7;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-weight: bold;
+        .post-content {
+            margin-top: 15px;
         }
         
+        aside {
+            background: var(--sidebar-bg);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .widget {
+            margin-bottom: 25px;
+        }
+        
+        .widget-title {
+            border-bottom: 2px solid var(--header-bg);
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        
+        footer {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            background: var(--header-bg);
+            color: white;
+            border-radius: 5px;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .knowledge-content {
+            body {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="knowledge-container">
-        <div class="knowledge-header">
-            <h1>Gain Knowledge with me...!</h1>
-            <p class="knowledge-subheader">Exploring transformative ideas and exigicational data</p>
+    <header>
+        <h1 class="blog-title">Kannada One</h1>
+        <p class="blog-description">Gain Knowledge with me...!</p>
+    </header>
+    
+    <main>
+        <article class="post">
+            <h2 class="post-title">Sample Post Title</h2>
+            <div class="post-date">July 15, 2025</div>
+            <div class="post-content">
+                <p>This is where your blog post content would appear. You can include:</p>
+                <ul>
+                    <li>Text paragraphs</li>
+                    <li>Images</li>
+                    <li>Code snippets</li>
+                    <li>Embedded videos</li>
+                </ul>
+                <p>Just like in your Blogspot posts.</p>
+            </div>
+        </article>
+        
+        <!-- More posts would go here -->
+    </main>
+    
+    <aside>
+        <div class="widget">
+            <h3 class="widget-title">Search</h3>
+            <input type="text" placeholder="Search this blog..." style="width: 100%; padding: 8px;">
         </div>
         
-        <div class="knowledge-content">
-            <div class="knowledge-card">
-                <h3 class="card-title">Exibid Concepts</h3>
-                <p class="card-content">
-                    <span class="exibid-highlight">ignored</span>, 
-                    <span class="exibid-highlight">e-factored</span>, 
-                    transforming, 
-                    <span class="exibid-highlight">abrogant desired</span>
-                </p>
-            </div>
-            
-            <div class="knowledge-card">
-                <h3 class="card-title">Web Start</h3>
-                <p class="card-content">
-                    <span class="exibid-highlight">exigicational</span> data/trivia, 
-                    scfWidget implementations
-                </p>
-            </div>
-            
-            <div class="knowledge-card">
-                <h3 class="card-title">Data Transformations</h3>
-                <p class="card-content">
-                    Advanced parsing of abnotus structures with 
-                    <span class="exibid-highlight">exigicational</span> matrices
-                </p>
-            </div>
-            
-            <div class="knowledge-card">
-                <h3 class="card-title">Widget Integration</h3>
-                <p class="card-content">
-                    Building <span class="exibid-highlight">scfWidget</span> 
-                    architectures for knowledge distillation
-                </p>
+        <div class="widget">
+            <h3 class="widget-title">Popular Posts</h3>
+            <ul>
+                <li><a href="#">Post Title One</a></li>
+                <li><a href="#">Post Title Two</a></li>
+                <li><a href="#">Post Title Three</a></li>
+            </ul>
+        </div>
+        
+        <div class="widget">
+            <h3 class="widget-title">Labels</h3>
+            <div style="line-height: 2;">
+                <a href="#" style="margin-right: 5px;">Technology</a>
+                <a href="#" style="margin-right: 5px;">Knowledge</a>
+                <a href="#" style="margin-right: 5px;">Coding</a>
             </div>
         </div>
-    </div>
+    </aside>
+    
+    <footer>
+        <p>© 2025 Kannada One - Powered by GitHub Pages</p>
+    </footer>
 </body>
 </html>

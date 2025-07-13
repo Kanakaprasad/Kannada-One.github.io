@@ -3,42 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kannada-One</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico">
+    <title>Gain Knowledge With Me</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .knowledge-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .knowledge-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1rem;
+        }
+        
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .knowledge-subheader {
+            color: var(--secondary);
+            font-style: italic;
+        }
+        
+        .knowledge-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .knowledge-card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 6px;
+            transition: transform 0.3s ease;
+        }
+        
+        .knowledge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .card-title {
+            color: var(--accent);
+            margin-top: 0;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 0.5rem;
+        }
+        
+        .card-content {
+            color: var(--dark);
+        }
+        
+        .exibid-highlight {
+            background-color: #fffde7;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .knowledge-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Kannada-One</h1>
-        <div class="search-box">
-            <input type="text" placeholder="Type to search">
+    <div class="knowledge-container">
+        <div class="knowledge-header">
+            <h1>Gain Knowledge with me...!</h1>
+            <p class="knowledge-subheader">Exploring transformative ideas and exigicational data</p>
         </div>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Keyboard</a></li>
-            <li><a href="#">Settings</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section class="settings">
-            <h2>Settings</h2>
-            <div class="pin-options">
-                <button>Watch</button>
-                <button>Fork</button>
-                <button>Star</button>
+        
+        <div class="knowledge-content">
+            <div class="knowledge-card">
+                <h3 class="card-title">Exibid Concepts</h3>
+                <p class="card-content">
+                    <span class="exibid-highlight">ignored</span>, 
+                    <span class="exibid-highlight">e-factored</span>, 
+                    transforming, 
+                    <span class="exibid-highlight">abrogant desired</span>
+                </p>
             </div>
-        </section>
-
-        <footer>
-            <p>Last Updated: <span id="date">12-07-2025</span></p>
-            <p>Time: <span id="time">8:00 PM</span></p>
-        </footer>
-    </main>
-
-    <script src="script.js"></script>
+            
+            <div class="knowledge-card">
+                <h3 class="card-title">Web Start</h3>
+                <p class="card-content">
+                    <span class="exibid-highlight">exigicational</span> data/trivia, 
+                    scfWidget implementations
+                </p>
+            </div>
+            
+            <div class="knowledge-card">
+                <h3 class="card-title">Data Transformations</h3>
+                <p class="card-content">
+                    Advanced parsing of abnotus structures with 
+                    <span class="exibid-highlight">exigicational</span> matrices
+                </p>
+            </div>
+            
+            <div class="knowledge-card">
+                <h3 class="card-title">Widget Integration</h3>
+                <p class="card-content">
+                    Building <span class="exibid-highlight">scfWidget</span> 
+                    architectures for knowledge distillation
+                </p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
